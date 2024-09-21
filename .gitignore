@@ -45,3 +45,4 @@ docker-compose.override.yml
 .vscode/
 TechTask_cw7.txt
 .pre-commit-config.yaml
+.flake8
