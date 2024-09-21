@@ -147,7 +147,7 @@ class SerializerTests(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertIn("non_field_errors", serializer.errors)
         self.assertIn(
-            "Related habit must be a pleasant habit.",
+            "Связанная привычка должна быть приятной.",
             str(serializer.errors["non_field_errors"]),
         )
 
