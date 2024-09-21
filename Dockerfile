@@ -5,12 +5,18 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock /app/
+# Установка Poetry
+RUN pip install --no-cache-dir poetry
 
-RUN pip install poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install --no-dev
+# Копирование файлов зависимостей
+COPY pyproject.toml poetry.lock* /app/
 
+# Установка зависимостей проекта
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi
+
+# Копирование проекта
 COPY . /app/
 
+# Запуск команды по умолчанию
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]

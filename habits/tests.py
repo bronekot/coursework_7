@@ -147,7 +147,7 @@ class SerializerTests(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertIn("non_field_errors", serializer.errors)
         self.assertIn(
-            "Related habit must be a pleasant habit.",
+            "Связанная привычка должна быть приятной.",
             str(serializer.errors["non_field_errors"]),
         )
 
@@ -358,5 +358,4 @@ class HabitViewSetTest(TestCase):
     def test_delete_habit(self):
         response = self.client.delete(f"/api/habits/{self.habit.id}/")
         self.assertEqual(response.status_code, 204)
-        self.assertEqual(Habit.objects.count(), 0)
         self.assertEqual(Habit.objects.count(), 0)
